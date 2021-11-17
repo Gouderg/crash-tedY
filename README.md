@@ -22,3 +22,9 @@ Si erreur
 ```bash
     npm install socket.io
 ```
+
+### Lancement du serveur
+
+```bash
+    node index.js
+```
