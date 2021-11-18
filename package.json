@@ -22,5 +22,8 @@
   "devDependencies": {
     "express": "^4.17.1",
     "socket.io": "^4.4.0"
+  },
+  "dependencies": {
+    "js-cookie": "^3.0.1"
   }
 }
