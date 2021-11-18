@@ -4,6 +4,13 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
+
+
+// Affiche les zéros des minutes et des heures.
+function displayZero(nombre) {
+  return nombre < 10 ? '0' + nombre : nombre;
+}
+
 // Permet de relier des chemins statiques pour les autres fichiers.
 app.use(express.static(__dirname + '/public'));
 
@@ -14,7 +21,8 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   socket.on('chat-msg', msg => {
-    msg['date'] = new Date();
+    let now = new Date();
+    msg['date'] = displayZero(now.getHours()) +':'+ displayZero(now.getMinutes());
     io.emit('chat-msg', msg);
   });
 });

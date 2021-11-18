@@ -4,21 +4,109 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Crash TedY</title>
 
 	<!-- Libraries -->
 	<script src="/socket.io/socket.io.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer></script>
 	
 	<!-- Javascript -->
+	<script src="js/index.js" defer></script>
 	<script src="js/chat.js" defer></script>
 
 	<!-- CSS -->
 	<link type="text/css" rel="stylesheet" href="css/chat.css" >
-	<title>Chat JS</title>
-	</head>
+	<link type="text/css" rel="stylesheet" href="css/style.css" >
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,900&display=swap" rel="stylesheet">
+</head>
 <body>
-	<ul id="messages"></ul>
-  	<form id="form" action="">
-	<input id="input" autocomplete="off" /><button>Send</button>
-  	</form>
+    <div id="menu">
+        <span id="menu-logo">CRASH.Ted<span style="color: #ff6962;">Y</span></span>
+        <div id="menu-right">
+            <span id="menu-balance">Balance : <span id="balance-amount">150125</span></span>
+            <span class="menu-button" id="menu-login">login</span>
+            <span class="menu-button" id="menu-register">register</span>
+        </div>
+    </div>
+    <div id="content">
+        <div id="left-panel">
+            <div id="left-panel-row">
+                <div id="graph">
+                    <canvas id="graph-chart"></canvas>
+                    <span id="bust-text"></span>
+                    <span id="next-game-text"></span>
+                    <span id="multi">x <span id="number">1</span></span>
+                    <div id="graph-history">
+                        <span class="graph-history-number deficit">x1.84</span>
+                        <span class="graph-history-number deficit">x1.78</span>
+                        <span class="graph-history-number benefit">x16.21</span>
+                        <span class="graph-history-number benefit">x2.40</span>
+                        <span class="graph-history-number deficit">x1.02</span>
+                    </div>
+                </div>
+                <div id="betting-section">
+                    <div id="betting-section-bet">
+                        <span>Bet (max : 100,000)</span>
+                        <input type="text" id="betting-section-bet-input" name="bet-input" required autocomplete="off">
+                    </div>
+                    <div id="betting-section-payout">
+                        <span>Auto Cash Out</span>
+                        <input type="text" id="betting-section-payout-input" name="payout-input" required autocomplete="off">
+                    </div>
+                    <button id="betting-section-button">Place bet</button>
+                </div>
+            </div>
+            <div id="chatbox">
+                <div id="chatbox-list-messages"></div>
+				<form id="chatbox-message-form" action="">
+					<input type="text" id="chatbox-message-input" placeholder="Envoyer un message ..." required autocomplete="off" />
+					<button>Send</button>
+				</form>
+            </div>
+        </div>
+        <div id="right-panel">
+            <table id="table-players">
+                <thead>
+                    <tr><td>USER</td><td>@</td><td>BET</td><td>PROFIT</td></tr>
+                </thead>
+                <tbody>
+                    <tr><td>goudfkezoperg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderfkope</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

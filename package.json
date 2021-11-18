@@ -1,6 +1,26 @@
-{  
-    "name": "socket-chat-example", 
-    "version": "0.0.1", 
-    "description": "chat - server - crash", 
-    "dependencies": {}
+{
+  "name": "crash-tedy",
+  "version": "1.0.0",
+  "description": "crash-game",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gouderg/crash-tedY.git"
+  },
+  "keywords": [
+    "crash-game"
+  ],
+  "author": "Aurélien SIMON - Victor ILLIEN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gouderg/crash-tedY/issues"
+  },
+  "homepage": "https://github.com/Gouderg/crash-tedY#readme",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.4.0"
+  }
 }

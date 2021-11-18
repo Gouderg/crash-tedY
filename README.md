@@ -28,3 +28,7 @@ Si erreur
 ```bash
     node index.js
 ```
+### Ajouter une dépendance au package.json
+```bash 
+    npm install <pkg> --save-dev
+```
