@@ -1,10 +1,10 @@
 'use strict';
 
-var socket = io();
-
 var chatbox = document.getElementById('chatbox-list-messages');
 var form = document.getElementById('chatbox-message-form');
 var input = document.getElementById('chatbox-message-input');
+
+var pseudo = "val";
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();

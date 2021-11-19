@@ -40,11 +40,13 @@ Si erreur
 ```bash 
     npm install <pkg> --save-dev
 ```
-### Setup de la base de donnee
+### Setup de la base de donnée
 
-Il faut installer mongodb-org:
-https://wiki.crowncloud.net/?How_to_Install_MongoDB_5_on_Ubuntu_21_10
+Il faut aller dans le dossier source, ouvrir la console mysql et tapez la commande SOURCE bdd.sql;
+
 
 ### Pour passer en SSL
 
 https://qastack.fr/programming/12871565/how-to-create-pem-files-for-https-web-server
+
+
