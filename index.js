@@ -20,11 +20,24 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+
+  // Chat.
   socket.on('chat-msg', msg => {
     let now = new Date();
     msg['date'] = displayZero(now.getHours()) +':'+ displayZero(now.getMinutes());
     io.emit('chat-msg', msg);
   });
+
+  // Login.
+  socket.on('login', (data) => {
+      // Login ok.
+      socket.emit('login', {pseudo: "gouderg", token: "ksjdnfjndsfkjdsnf"});
+  
+      // Login error.
+  });
+
+
+  // Register.
 });
 
 // Serveur écoute sur le port 3000.

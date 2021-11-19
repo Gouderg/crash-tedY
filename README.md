@@ -1,6 +1,6 @@
 # Crash tedY
 
-##### Installation NodeJS ubuntu
+### Installation NodeJS ubuntu
 
 ```bash
     sudo apt-get update
@@ -14,13 +14,21 @@ Si erreur
     sudo apt-get install -y nodejs
 ```
 
-##### Installation de ExpressJS
+### Installation des dependances
 ```bash
     npm install express@4
 ```
 
 ```bash
     npm install socket.io
+```
+
+```bash
+    npm install js-cookie
+```
+
+```bash
+    npm install mongodb
 ```
 
 ### Lancement du serveur
@@ -32,3 +40,11 @@ Si erreur
 ```bash 
     npm install <pkg> --save-dev
 ```
+### Setup de la base de donnee
+
+Il faut installer mongodb-org:
+https://wiki.crowncloud.net/?How_to_Install_MongoDB_5_on_Ubuntu_21_10
+
+### Pour passer en SSL
+
+https://qastack.fr/programming/12871565/how-to-create-pem-files-for-https-web-server

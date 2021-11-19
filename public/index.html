@@ -47,18 +47,34 @@
     <!-- Login section. -->
     <section id="login">
         <div class="container-login">
-            <form action="">
-                <input type="email" name="email-login" id="email-login">
-                <input type="password" name="pass-login" id="pass-login">
-                <button>Send</button>
+            <h1 class="title-login">Login</h1>
+            <form id="form-login" action="" class="form-login">
+                <label for="email-login">Email:</label>
+                <input type="email" name="email-login" id="email-login" class="form-champs" required>
+
+                <label for="pass-login">Password:</label>
+                <input type="password" name="pass-login" id="pass-login" class="form-champs" required>
+                <button class="form-button">Send</button>
             </form>
-            <a href="">Register</a>
         </div>
-    </section>
+        <div class="container-register">
+            <h1 class="title-login">Register</h1>
+            <form id="form-register" action="" class="form-login">
+                <label for="email-register">Email:</label>
+                <input type="email" name="email-register" id="email-register" class="form-champs" required>
 
-    <!-- Register section. -->
-    <section id="register">
-
+                <label for="pseudo-register">Pseudo:</label>
+                <input type="text" name="pseudo-register" id="pseudo-register" class="form-champs" required>
+                
+                <label for="pass-register">Password:</label>
+                <input type="password" name="pass-register" id="pass-register" class="form-champs" required>
+                
+                <label for="comfpass-register">Comfirm password:</label>
+                <input type="password" name="comfpass-register" id="comfpass-register" class="form-champs" required>
+                
+                <button class="form-button">Send</button>
+            </form>
+        </div>
     </section>
 
     <!-- Content -->

@@ -24,6 +24,7 @@
     "socket.io": "^4.4.0"
   },
   "dependencies": {
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^3.0.1",
+    "mysql": "^2.18.1"
   }
 }
