@@ -4,9 +4,10 @@ var chatbox = document.getElementById('chatbox-list-messages');
 var form = document.getElementById('chatbox-message-form');
 var input = document.getElementById('chatbox-message-input');
 
-var pseudo = "val";
+
 
 form.addEventListener('submit', function(e) {
+    let pseudo = Cookies.get('pseudo');
     e.preventDefault();
     if (input.value) {
         socket.emit('chat-msg', {pseudo: pseudo ,msg: input.value});

@@ -17,7 +17,6 @@ function init() {
         $('#content').hide();
         $('#login').show();
     }
-
 }
 
 // Réponse du serveur si le token enregistrer dans les cookies est ok, on affiche la page normalement.
@@ -47,12 +46,12 @@ $('#form-login').on('submit', function(e) {
     }
 });
 
-
-
-// Reponse du serveur, on met le pseudo et le token en cookie.
+// Réponse du serveur, on met le pseudo et le token en cookie.
 socket.on('login', (data) => {
     Cookies.set('email', data.email, { expires: 7 });
     Cookies.set('token', data.token, { expires: 7 });
+    Cookies.set('pseudo', data.pseudo, { expires: 7 });
+
     $('#menu').show();
     $('#content').show();
     $('#login').hide();
@@ -64,3 +63,41 @@ socket.on('err-login', (code) => {
     // On affiche l'erreur
     console.log(code);
 });
+
+// Si l'utilisateur soumet le formulaire de register.
+$('#form-register').on('submit', function(e) {
+    e.preventDefault();
+
+    // Si toutes les données sont validés.
+    if ($('#email-register').val() && $('#pseudo-register').val() && $('#comfpass-register').val() && $('#pass-register').val()) {
+        // Mot de passe différent
+        if ($('#pass-register').val() !== $('#comfpass-register').val()) {
+            // On affiche un mot de passe.      
+        } else {
+            // On encrypte le mot de passe.
+    
+            // On envoie à la base de donnée.
+            socket.emit('register', {email: $('#email-register').val(), pseudo: $('#pseudo-register').val(), password: $('#pass-register').val()});
+            $('#form-register').trigger("reset");
+        }
+    }
+});
+
+
+// Réponse du serveur pour la création du profil - register.
+socket.on('register', (data) => {
+    Cookies.set('email', data.email, { expires: 7 });
+    Cookies.set('token', data.token, { expires: 7 });
+    Cookies.set('pseudo', data.pseudo, { expires: 7 });
+
+    $('#menu').show();
+    $('#content').show();
+    $('#login').hide();
+});
+
+socket.on('err-register', (code) => {
+    console.log(code);
+});
+
+
+

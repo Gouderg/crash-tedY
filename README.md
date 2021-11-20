@@ -16,19 +16,7 @@ Si erreur
 
 ### Installation des dependances
 ```bash
-    npm install express@4
-```
-
-```bash
-    npm install socket.io
-```
-
-```bash
-    npm install js-cookie
-```
-
-```bash
-    npm install mongodb
+    npm install express@4 mysql2 socket.io js-cookie jsonwebtoken
 ```
 
 ### Lancement du serveur
@@ -50,3 +38,6 @@ Il faut aller dans le dossier source, ouvrir la console mysql et tapez la comman
 https://qastack.fr/programming/12871565/how-to-create-pem-files-for-https-web-server
 
 
+## TO DO
+
+- Affichages des erreurs Login/Register
