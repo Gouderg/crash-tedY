@@ -177,4 +177,4 @@ function disconnect () {
 }
 
 changeMenuIfLogged(isLogged());
-//createRound();
+createRound();
