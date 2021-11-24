@@ -139,4 +139,42 @@ function update () {
     updateChart(u, n);
 }
 
-createRound();
+function showLoginRegister (e) {
+    document.getElementById('login-register').style.display = 'flex';
+
+    if (e.getAttribute('action') == 'login') {
+        $('#container-login').show();
+    } else if (e.getAttribute('action') == 'register') {
+        $('#container-register').show();
+    } 
+}
+function closeLoginRegister () {
+    document.getElementById('login-register').style.display = 'none';
+    $('#container-login').hide();
+    $('#container-register').hide();
+}
+
+function isLogged () {
+    return Cookies.get('token') != null;
+}
+
+function changeMenuIfLogged (logged) {
+    if (logged) {
+        $('#menu-notlogged').hide();
+        $('#menu-logged').show();
+        $('#menu-pseudo').text(Cookies.get('pseudo'));
+    } else {
+        $('#menu-notlogged').show();
+        $('#menu-logged').hide();
+    }
+}
+
+function disconnect () {
+    Cookies.remove('token');
+    Cookies.remove('pseudo');
+    Cookies.remove('email');
+    location.reload();
+}
+
+changeMenuIfLogged(isLogged());
+//createRound();

@@ -33,48 +33,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,900&display=swap" rel="stylesheet">
 </head>
 <body onload="init()">
+
+    <section id="login-register">
+        
+        <div id="container-login">
+            <div id="login-title-box">
+                <span id="title-login">Login</span>
+                <span id="login-quit" onclick="closeLoginRegister()">X</span>
+            </div>
+            <form id="form-login" action="" class="form-login">
+                <input type="email" name="email-login" id="email-login" class="form-champs" placeholder="Mail" required>
+                <input type="password" name="pass-login" id="pass-login" class="form-champs" placeholder="Password" required>
+                <button class="form-button">login</button>
+            </form>
+        </div>
+        
+        <div id="container-register">
+            <div id="login-title-box">
+                <span id="title-login">Register</span>
+                <span id="login-quit" onclick="closeLoginRegister()">X</span>
+            </div>
+            <form id="form-register" action="" class="form-login">
+                <input type="email" name="email-register" id="email-register" class="form-champs" placeholder="Mail" required>
+                <input type="text" name="pseudo-register" id="pseudo-register" class="form-champs" placeholder="Pseudo" required>
+                <input type="password" name="pass-register" id="pass-register" class="form-champs" placeholder="Password" required>
+                <input type="password" name="comfpass-register" id="comfpass-register" class="form-champs" placeholder="Repeat Password" required>
+                
+                <button class="form-button">register</button>
+            </form>
+        </div>
+        
+    </section>
+
     <!-- Menu. -->
     <header id="menu">
         <span id="menu-logo">CRASH.Ted<span style="color: #ff6962;">Y</span></span>
-        <div id="menu-right">
+        
+        <div class="menu-right" id="menu-notlogged">
+            <span class="menu-button" id="menu-login" action="login" onclick="showLoginRegister(this)">login</span>
+            <span class="menu-button" id="menu-register" action="register" onclick="showLoginRegister(this)">register</span>
+        </div>
+        <div class="menu-right" id="menu-logged">
             <span id="menu-balance">Balance : <span id="balance-amount">150125</span></span>
-            <span class="menu-button" id="menu-login">login</span>
-            <span class="menu-button" id="menu-register">register</span>
+            <span id="menu-pseudo"></span>
+            <span class="menu-button" id="menu-login" action="register" onclick="disconnect(this)">Disconnect</span>
         </div>
     </header>
-
-    <!-- Login section. -->
-    <section id="login">
-        <div class="container-login">
-            <h1 class="title-login">Login</h1>
-            <form id="form-login" action="" class="form-login">
-                <label for="email-login">Email:</label>
-                <input type="email" name="email-login" id="email-login" class="form-champs" required>
-
-                <label for="pass-login">Password:</label>
-                <input type="password" name="pass-login" id="pass-login" class="form-champs" required>
-                <button class="form-button">Send</button>
-            </form>
-        </div>
-        <div class="container-register">
-            <h1 class="title-login">Register</h1>
-            <form id="form-register" action="" class="form-login">
-                <label for="email-register">Email:</label>
-                <input type="email" name="email-register" id="email-register" class="form-champs" required>
-
-                <label for="pseudo-register">Pseudo:</label>
-                <input type="text" name="pseudo-register" id="pseudo-register" class="form-champs" required>
-                
-                <label for="pass-register">Password:</label>
-                <input type="password" name="pass-register" id="pass-register" class="form-champs" required>
-                
-                <label for="comfpass-register">Comfirm password:</label>
-                <input type="password" name="comfpass-register" id="comfpass-register" class="form-champs" required>
-                
-                <button class="form-button">Send</button>
-            </form>
-        </div>
-    </section>
 
     <!-- Content -->
     <section id="content">
@@ -109,7 +113,7 @@
                 <div id="chatbox-list-messages"></div>
 				<form id="chatbox-message-form" action="">
 					<input type="text" id="chatbox-message-input" placeholder="Envoyer un message ..." required autocomplete="off" />
-					<button>Send</button>
+					<button id="chatbox-message-send">Send</button>
 				</form>
             </div>
         </div>
@@ -124,21 +128,6 @@
                     <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
                     <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
                     <tr><td>gouderfkope</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
-                    <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
                     <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
                     <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>
                     <tr><td>gouderg</td><td>-</td><td>2,200</td><td>-</td></tr>

@@ -23,8 +23,11 @@ body {
     font-weight: bolder;
     font-family: 'Grandstander', cursive;
 }
-#menu-right span {
+.menu-right span {
     margin: 0 10px;
+}
+#menu-logged {
+    display: none;
 }
 .menu-button {
     padding: 10px 20px;
@@ -142,10 +145,10 @@ body {
 #betting-section input {
     border: none;
     border-radius: 2px;
-    height: 2vw;
+    height: 30px;
     font-family: 'Shippori Antique', sans-serif;
     font-weight: bolder;
-    padding: 5px;
+    padding: 0px 10px;
 }
 #betting-section-button {
     width: 100%;
@@ -164,6 +167,9 @@ body {
     cursor: pointer;
 }
 
+#chatbox-message-form {
+    display: flex;
+}
 #chatbox {
     flex: 1;
     border-radius: 10px;
@@ -176,9 +182,9 @@ body {
     padding: 10px;
     overflow-y: scroll;
 }
-#chatbox-message-input {
-    width: 100%;
-    box-sizing:border-box;
+#chatbox-message-send {
+    width: 15%;
+    border-radius: 0 0 5px 0;
 }
 .chatbox-message span {
     font-family: 'Source Code Pro', monospace;
@@ -198,7 +204,8 @@ body {
 #chatbox-message-input {
     font-family: 'Source Code Pro', monospace;
     padding: 5px;
-    border-radius: 0 0 5px 5px;
+    width: 85%;
+    border-radius: 0 0 0 5px;
 }
 .message-system {
     color:#86e080;
@@ -208,6 +215,7 @@ body {
 #graph {
     position: relative;
     flex: 5;
+    overflow: hidden;
 }
 
 #multi {

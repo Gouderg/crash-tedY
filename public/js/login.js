@@ -10,28 +10,20 @@ function init() {
     let token = Cookies.get('token');
 
     if (email !== "undefined" && token !== "undefined") {
-        socket.emit('tocken-check', {email: email, token: token});
+        socket.emit('token-check', {email: email, token: token});
     } else {
         // Sinon, on affiche la page de login.
-        $('#menu').hide();
-        $('#content').hide();
-        $('#login').show();
     }
 }
 
 // Réponse du serveur si le token enregistrer dans les cookies est ok, on affiche la page normalement.
-socket.on('tocken', (data) => {
+socket.on('token', (data) => {
     console.log(data);
-    $('#menu').show();
-    $('#content').show();
-    $('#login').hide();
+    $('#login-register').hide();
 });
 
 // Réponse du serveur si le token n'est pas valide, on se connecte.
-socket.on('err-tocken', (data) => {
-    $('#menu').hide();
-    $('#content').hide();
-    $('#login').show();
+socket.on('err-token', (data) => {
 }); 
 
 
@@ -52,10 +44,8 @@ socket.on('login', (data) => {
     Cookies.set('token', data.token, { expires: 7 });
     Cookies.set('pseudo', data.pseudo, { expires: 7 });
 
-    $('#menu').show();
-    $('#content').show();
-    $('#login').hide();
-
+    $('#login-register').hide();
+    location.reload();
 });
 
 // Mauvais login.
@@ -90,9 +80,8 @@ socket.on('register', (data) => {
     Cookies.set('token', data.token, { expires: 7 });
     Cookies.set('pseudo', data.pseudo, { expires: 7 });
 
-    $('#menu').show();
-    $('#content').show();
-    $('#login').hide();
+    $('#login-register').hide();
+    location.reload();
 });
 
 socket.on('err-register', (code) => {
