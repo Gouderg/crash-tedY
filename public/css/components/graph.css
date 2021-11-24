@@ -1,0 +1,53 @@
+#graph {
+    position: relative;
+    flex: 5;
+    overflow: hidden;
+}
+
+#multi {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-20%, -125%);
+    font-size: 6vmax;
+    font-weight: bold;
+    line-height: 5vmax;
+    width: 100%;
+    color: white;
+}
+#bust-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-5%, -120%);
+    font-size: 2vmax;
+    display: none;
+    width: 100%;
+    color: #ff6962;
+}
+#next-game-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-20%, -150%);
+    font-size: 2vmax;
+    display: none;
+    width: 100%;
+}
+#graph-history {
+    width: 100%;
+    padding-top: 25px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1vmax;
+}
+.benefit {
+    color: #86e080;
+}
+.deficit {
+    color: #ff6962;
+}
+
+#next-game {
+    display: none;
+}

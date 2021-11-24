@@ -1,0 +1,44 @@
+#chatbox-message-form {
+    display: flex;
+}
+#chatbox {
+    flex: 1;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+#chatbox-list-messages {
+    height: 225px;
+    border-radius: 5px 0 0 0;
+    background-color: #444444;
+    padding: 10px;
+    overflow-y: scroll;
+}
+#chatbox-message-send {
+    width: 15%;
+    border-radius: 0 0 5px 0;
+}
+.chatbox-message span {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 2.25vmin;
+}
+.chatbox-message-date {
+    color: #9c9c9c;
+    font-weight: 400;
+}
+.chatbox-message-author {
+    color: #ffffff;
+    font-weight: bold;
+}
+.chatbox-message-message {
+    color: #EDEDED;
+}
+#chatbox-message-input {
+    font-family: 'Source Code Pro', monospace;
+    padding: 5px;
+    width: 85%;
+    border-radius: 0 0 0 5px;
+}
+.message-system {
+    color:#86e080;
+    font-style: italic;
+}

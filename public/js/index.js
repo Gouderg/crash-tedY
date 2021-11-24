@@ -176,5 +176,4 @@ function disconnect () {
     location.reload();
 }
 
-changeMenuIfLogged(isLogged());
 createRound();

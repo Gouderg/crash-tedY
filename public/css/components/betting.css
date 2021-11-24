@@ -1,0 +1,40 @@
+#betting-section {
+    flex: 3;
+    background-color: #444444;
+    display: flex;
+    flex-direction: column;
+}
+#betting-section div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5vw 0;
+}
+#betting-section span {
+    display: block;
+    font-size: 2vmin;
+}
+#betting-section input {
+    border: none;
+    border-radius: 2px;
+    height: 30px;
+    font-family: 'Shippori Antique', sans-serif;
+    font-weight: bolder;
+    padding: 0px 10px;
+}
+#betting-section-button {
+    width: 100%;
+    background:#86e080;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 10px;
+    font-family: 'Shippori Antique', sans-serif;
+    font-size: 3vmin;
+    color: #EDEDED;
+}
+#betting-section-button:hover {
+    cursor: pointer;
+}
