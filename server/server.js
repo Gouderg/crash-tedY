@@ -4,15 +4,17 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
-var Chat = require('./chat');
-var Login = require('./login');
+var Chat = require('./scripts/chat');
+var Login = require('./scripts/login');
+
+var path = __dirname.replace('/server', '');
 
 // Permet de relier des chemins statiques pour les autres fichiers.
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path + '/client'));
 
 // Emplacement du site.
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(path + '/client/index.html');
 });
 
 io.on('connection', (socket) => {

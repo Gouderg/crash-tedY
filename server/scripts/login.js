@@ -18,7 +18,7 @@ function isObjEmpty(obj) {
 
 
 // Token-check.
-exports.token_check = function(socket) {
+let token_check = function(socket) {
     socket.on('tocken-check', (data) => {
         // Tcheck bdd
         con.connect(function(err) { if (err) throw err;});
@@ -37,7 +37,7 @@ exports.token_check = function(socket) {
 }
 
 // Login.
-exports.login = function(socket) {
+let login = function(socket) {
     socket.on('login', (data) => {
         // Connexion à la base de données.
         con.connect(function(err) { if (err) throw err;});
@@ -63,7 +63,7 @@ exports.login = function(socket) {
 }
 
 // Register.
-exports.register = function(socket) {
+let register = function(socket) {
     socket.on('register', (data) => {
       // Connexion à la base de données.
       con.connect(function(err) { if (err) throw err;});
@@ -88,3 +88,7 @@ exports.register = function(socket) {
       });
     });
 }
+
+exports.token_check = token_check;
+exports.login = login;
+exports.register = register;
