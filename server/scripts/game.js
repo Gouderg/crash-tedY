@@ -62,7 +62,7 @@ function Game (io) {
     function runTick () {
         let elapsed = new Date() - start_time;
         let current_crash = growthFunction(elapsed);
-        
+
         if (current_crash >= crash) {
             endGame();
         } else {
