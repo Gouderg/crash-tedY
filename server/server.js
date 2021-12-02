@@ -4,13 +4,14 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
-var Chat = require('./scripts/chat');
-var Login = require('./scripts/login');
+let Chat = require('./scripts/chat');
+let Login = require('./scripts/login');
+let Game = require('./scripts/game');
 
-var path = __dirname.replace('/server', '');
+let path = __dirname.replace('\server', '');
 
 // Permet de relier des chemins statiques pour les autres fichiers.
-app.use(express.static(path + '/client'));
+app.use(express.static(path + '\client'));
 
 // Emplacement du site.
 app.get('/', (req, res) => {
@@ -31,3 +32,5 @@ io.on('connection', (socket) => {
 http.listen(port, () => {
   console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
+
+let g = new Game(io);
