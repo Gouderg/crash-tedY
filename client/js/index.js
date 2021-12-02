@@ -45,9 +45,15 @@ let c = new Chart("graph-chart", {
   }
 });
 
+// USED FUNCTION
+function growthFunction (elapsed) {
+    return Math.floor(100 * Math.pow(Math.E, 0.00006 * elapsed)) / 100;
+}
+
+// LINKED WITH game_starting
 function countdown () {
     let timeNow = new Date();
-    nextGameDate = timeNow.setSeconds(timeNow.getSeconds() + 6);
+    nextGameDate = timeNow.setSeconds(timeNow.getSeconds() + 5);
     cd = setInterval(makecountdown, 100, nextGameDate);
 
     document.getElementById('next-game-text').style.display = 'block';
@@ -55,29 +61,39 @@ function countdown () {
     document.getElementById('betting-section-button').innerHTML = 'Place Bet';
     document.getElementById('betting-section-button').style.backgroundColor = '#86e080';
 }
-function makecountdown () {
+// USED FUNCTION
+function makecountdown (nextGameDate) {
     let timeNow = new Date();
     let timeleft = nextGameDate - timeNow;
 
     if (timeleft <= 0) {
         clearInterval(cd);
         document.getElementById('next-game-text').style.display = 'none';
-        createRound();
     } else {
         document.getElementById('next-game-text').innerHTML = 'Next game in ' + (timeleft / 1000).toFixed(2) + ' s';
     }
 }
 
-function createRound () {
-    crash = getCrashValue();
+// LINKED WITH game_crash
+function gameCrashed (crash) {
+    let tp = document.getElementById('table-players');
+    for (var i = 0, row; row = tp.rows[i]; i++) {
+        row.style.color = '#ff6962';
+    }
+
+    document.getElementById('bust-text').innerHTML = 'Busted<br> @ x ' + crash;
+    document.getElementById('bust-text').style.display = 'block';
+    document.getElementById('multi').style.display = 'none';
+}
+
+// LINKED WITH game_started
+function createRound (crash) {
 
     let chatbox = document.getElementById('chatbox-list-messages');
     let now = new Date();
     now = now.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
     chatbox.innerHTML += "<div class='chatbox-message'><span class='chatbox-message-date'>" + now + " </span><span class='chatbox-message-author message-system'>System Info</span><span> : </span><span class='chatbox-message-message message-system'>Next crash value is " + crash + "</span></div>";
     chatbox.scrollTop = chatbox.scrollHeight;
-    
-    inte = setInterval(update, 10);
     
     c.data.labels = [];
     c.data.datasets[0].data = [];
@@ -94,12 +110,13 @@ function createRound () {
     }
 }
 
-function getCrashValue () {
-    let crash = Math.round(0.99/(1 - Math.random()) * 100) / 100;
-    if (crash < 1.01) crash = 1.01;
-    return crash;
+// LINKED WITH game_tick
+function updateOnTick (elapsed) {
+    let e = growthFunction(elapsed);
+    document.getElementById('number').innerHTML = e.toFixed(2);
 }
 
+// UNUSED FUNCTION
 function updateChart (l, e) {
     if (e > 2) {
         c.options.scales.yAxes[0].ticks.max = e;
@@ -109,6 +126,7 @@ function updateChart (l, e) {
     c.update();
 }
 
+// UNUSED FUNCTION
 function update () {
     var r = 0.001;
     n =  Math.floor(100 * Math.pow(Math.E, r * u)) / 100;
@@ -138,6 +156,7 @@ function update () {
     u++;
     updateChart(u, n);
 }
+
 
 function showLoginRegister (e) {
     document.getElementById('login-register').style.display = 'flex';
@@ -175,5 +194,3 @@ function disconnect () {
     Cookies.remove('email');
     location.reload();
 }
-
-createRound();

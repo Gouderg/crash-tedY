@@ -5,7 +5,7 @@ function getCrashValue () {
 }
 
 function growthFunction (elapsed) {
-    return Math.floor(100 * Math.pow(Math.E, 0.00006 * elapsed));
+    return Math.floor(100 * Math.pow(Math.E, 0.00006 * elapsed)) / 100;
 }
 
 // env vars (ms)
@@ -62,8 +62,8 @@ function Game (io) {
     function runTick () {
         let elapsed = new Date() - start_time;
         let current_crash = growthFunction(elapsed);
-
-        if (current_crash >= crash * 100) {
+        
+        if (current_crash >= crash) {
             endGame();
         } else {
             tick(elapsed);
