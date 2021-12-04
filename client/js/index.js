@@ -2,6 +2,9 @@ let u = 0;
 let crash = 0;
 let inte, cd;
 let nextGameDate;
+let current_elapsed = 0;
+let tick_client = 10;
+let interval;
 
 let c = new Chart("graph-chart", {
   type: "line",
@@ -111,17 +114,19 @@ function createRound (crash) {
 }
 
 // LINKED WITH game_tick
-function updateOnTick (elapsed) {
-    let e = growthFunction(elapsed);
+function updateOnTick () {
+    let e = growthFunction(current_elapsed);
     document.getElementById('number').innerHTML = e.toFixed(2);
+
+    current_elapsed += tick_client;
+    updateChart(e);
 }
 
-// UNUSED FUNCTION
-function updateChart (l, e) {
+function updateChart (e) {
     if (e > 2) {
         c.options.scales.yAxes[0].ticks.max = e;
     }
-    c.data.labels.push(Math.round(l/100));
+    c.data.labels.push(Math.round(10/100));
     c.data.datasets[0].data.push(e);
     c.update();
 }
