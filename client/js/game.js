@@ -14,8 +14,8 @@ socket.on('game_started', (crash) => {
 
 // La partie continue, tick tout les tick_rate (150 ms), cf server/game.js
 socket.on('game_tick', (elapsed) => {
-    if (!interval) interval = setInterval(updateOnTick, tick_client, current_elapsed);
     current_elapsed = elapsed;
+    if (!interval) interval = setInterval(updateOnTick, tick_client, current_elapsed);
 });
 
 // La partie a crash, changer l'affichage

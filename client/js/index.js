@@ -119,9 +119,17 @@ function updateOnTick () {
     document.getElementById('number').innerHTML = e.toFixed(2);
 
     current_elapsed += tick_client;
+
     updateChart(e);
+    updateCashOut(e);
 }
 
+function updateCashOut (n) {
+    document.getElementById('number').innerHTML = n.toFixed(2);
+    if (document.getElementById('betting-section-bet-input').value) {
+        document.getElementById('betting-section-button').innerHTML = 'Cashout (+ ' + (n * parseFloat(document.getElementById('betting-section-bet-input').value)).toFixed(2) + ')';
+    }
+}
 function updateChart (e) {
     if (e > 2) {
         c.options.scales.yAxes[0].ticks.max = e;
@@ -135,11 +143,6 @@ function updateChart (e) {
 function update () {
     var r = 0.001;
     n =  Math.floor(100 * Math.pow(Math.E, r * u)) / 100;
-
-    document.getElementById('number').innerHTML = n.toFixed(2);
-    if (document.getElementById('betting-section-bet-input').value) {
-        document.getElementById('betting-section-button').innerHTML = 'Cashout (+ ' + (n * parseFloat(document.getElementById('betting-section-bet-input').value)).toFixed(2) + ')';
-    }
 
     if (crash <= n) {
         let tp = document.getElementById('table-players');
