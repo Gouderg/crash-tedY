@@ -87,6 +87,8 @@ function gameCrashed (crash) {
     document.getElementById('bust-text').innerHTML = 'Busted<br> @ x ' + crash;
     document.getElementById('bust-text').style.display = 'block';
     document.getElementById('multi').style.display = 'none';
+    document.getElementById('betting-section-button').innerHTML = 'Place Bet';
+    document.getElementById('betting-section-button').style.backgroundColor = '#cdd9cc';
 }
 
 // LINKED WITH game_started

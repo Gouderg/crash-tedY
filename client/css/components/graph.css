@@ -3,6 +3,9 @@
     flex: 5;
     overflow: hidden;
 }
+#graph-chart {
+    height: 20vmax;
+}
 
 #multi {
     position: absolute;
