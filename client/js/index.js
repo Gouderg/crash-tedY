@@ -1,5 +1,3 @@
-// const { Socket } = require("socket.io");
-
 let u = 0;
 let crash = 0;
 let inte, cd;

@@ -40,4 +40,14 @@ https://qastack.fr/programming/12871565/how-to-create-pem-files-for-https-web-se
 
 ## TO DO
 
-- Affichages des erreurs Login/Register
+- Affichages des erreurs Login/
+
+### Algorithme
+
+game:
+    - calcul de la zone de crash
+    - Emission d'un tick tous les 150 ms si ca ne crash pas (function alive)
+    - Emission d'un tick de blocking tous les 150ms (function blocking emit en meme temps le coef du dernier crash)
+    - 
+
+
