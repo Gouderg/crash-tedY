@@ -1,3 +1,5 @@
+// const { Socket } = require("socket.io");
+
 let u = 0;
 let crash = 0;
 let inte, cd;
@@ -192,9 +194,14 @@ function changeMenuIfLogged (logged) {
         $('#menu-notlogged').hide();
         $('#menu-logged').show();
         $('#menu-pseudo').text(Cookies.get('pseudo'));
+        $('#betting-section').show();
+        $('#betting-section-nolog').hide();
+
     } else {
         $('#menu-notlogged').show();
         $('#menu-logged').hide();
+        $('#betting-section').hide();
+        $('#betting-section-nolog').show();
     }
 }
 

@@ -73,7 +73,7 @@
             <span class="menu-button" id="menu-register" action="register" onclick="showLoginRegister(this)">register</span>
         </div>
         <div class="menu-right" id="menu-logged">
-            <span id="menu-balance">Balance : <span id="balance-amount">150125</span></span>
+            <span id="menu-balance">Balance : <span id="balance-amount"></span></span>
             <span id="menu-pseudo"></span>
             <span class="menu-button" id="menu-login" action="register" onclick="disconnect(this)">Disconnect</span>
         </div>
@@ -96,6 +96,7 @@
                         <span class="graph-history-number deficit">x1.02</span>
                     </div>
                 </div>
+                <!-- Betting section when log. -->
                 <div id="betting-section">
                     <div id="betting-section-bet">
                         <span>Bet (max : 100,000)</span>
@@ -106,6 +107,12 @@
                         <input type="text" id="betting-section-payout-input" name="payout-input" required autocomplete="off">
                     </div>
                     <button id="betting-section-button">Place bet</button>
+                </div>
+                <!-- Betting section when no log. -->
+                <div id="betting-section-nolog">
+                    <div>
+                        <span>Need to login/register to bet.</span>
+                    </div>
                 </div>
             </div>
             <div id="chatbox">

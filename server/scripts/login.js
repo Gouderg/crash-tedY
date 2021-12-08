@@ -52,7 +52,7 @@ let login = function(socket) {
             } else {
                 // On crée le token utilisateur.
                 let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-                socket.emit('login', {email: rows[0].email, token: token, pseudo: rows[0].pseudo}); 
+                socket.emit('login', {email: rows[0].email, token: token, pseudo: rows[0].pseudo, balance: rows[0].balance}); 
             
                 // On ajoute le token à la base de donnée.
                 let sql = "UPDATE user SET token = ? WHERE email = ?";
@@ -79,15 +79,16 @@ let register = function(socket) {
           let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
       
           // On ajoute l'ulisateur à la base de données.
-          let sql = "INSERT INTO user (email, password, pseudo, token, balance) VALUES (?, ?, ?, ?, 0)";
+          let sql = "INSERT INTO user (email, password, pseudo, token, balance) VALUES (?, ?, ?, ?, 1000)";
           con.query(sql,[data.email, data.password, data.pseudo, token], function (err, result) {if (err) throw err;});
       
           // On renvoit le token à l'utilisateur.
-          socket.emit('register', {email: data.email, token: token, pseudo: data.pseudo}); 
+          socket.emit('register', {email: data.email, token: token, pseudo: data.pseudo, balance: 1000}); 
         }
       });
     });
 }
+
 
 exports.token_check = token_check;
 exports.login = login;

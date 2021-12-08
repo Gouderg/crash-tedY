@@ -1,16 +1,19 @@
-#betting-section {
+#betting-section,
+#betting-section-nolog {
     flex: 3;
     background-color: #444444;
     display: flex;
     flex-direction: column;
 }
-#betting-section div {
+#betting-section div,
+#betting-section-nolog div {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin: 0.5vw 0;
 }
-#betting-section span {
+#betting-section span,
+#betting-section-nolog span {
     display: block;
     font-size: 2vmin;
 }

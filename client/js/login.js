@@ -43,9 +43,10 @@ socket.on('login', (data) => {
     Cookies.set('email', data.email, { expires: 7 });
     Cookies.set('token', data.token, { expires: 7 });
     Cookies.set('pseudo', data.pseudo, { expires: 7 });
-
+    
     $('#login-register').hide();
     location.reload();
+    $('#balance-amount').text(data.balance);
 });
 
 // Mauvais login.
@@ -82,11 +83,11 @@ socket.on('register', (data) => {
 
     $('#login-register').hide();
     location.reload();
+    console.log(data.balance);
+    $('#balance-amount').text(data.balance);
 });
 
 socket.on('err-register', (code) => {
     console.log(code);
 });
-
-
 
