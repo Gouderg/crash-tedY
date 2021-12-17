@@ -6,10 +6,22 @@ function getBalance(logged) {
 }
 
 socket.on('balance', (data) => {
-    console.log(data);
-    $('#balance-amount').text(data.balance);
+    document.getElementById('balance-amount').innerHTML = data.balance;
 });
 
 socket.on('err-balance', (err) => {
     console.log(code);
+});
+
+$('#betting-section-button').on('submit', function(e) {
+    e.preventDefault();
+
+    document.getElementById('betting-section-button').disabled = true;
+    document.getElementById('betting-section-button').style.backgroundColor = '#7a7a7a';
+    if ($("#betting-section-bet-input").val()) {
+        console.log($("#betting-section-bet-input").val());
+        
+    }
+
+    console.log('Hello');
 });

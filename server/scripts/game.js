@@ -24,6 +24,7 @@ function Game (io) {
         
         // TODO : Add game to db
         crash = getCrashValue();
+        crash = 1.25;
         console.log(state + ' (crash @' + crash + ')');
         
         start_time = new Date(Date.now() + restart_time);

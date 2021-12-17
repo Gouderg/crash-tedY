@@ -1,6 +1,6 @@
 // Nouvelle partie -> afficher le compteur
 socket.on('game_starting', (data) => {
-    console.log(data);
+    console.log(data, "one time");
     countdown();
 });
 
@@ -20,7 +20,7 @@ socket.on('game_tick', (elapsed) => {
 
 // La partie a crash, changer l'affichage
 socket.on('game_crash', (data) => {
-    console.log(data);
+    console.log(data, "ALED");
     gameCrashed(data.game_crash);
     clearInterval(interval);
 });

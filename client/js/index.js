@@ -6,6 +6,8 @@ let current_elapsed = 0;
 let tick_client = 10;
 let interval;
 
+
+
 let c = new Chart("graph-chart", {
   type: "line",
   data: {
@@ -63,6 +65,9 @@ function countdown () {
     document.getElementById('bust-text').style.display = 'none';
     document.getElementById('betting-section-button').innerHTML = 'Place Bet';
     document.getElementById('betting-section-button').style.backgroundColor = '#86e080';
+    document.getElementById('betting-section-button').disabled = false;
+
+
 }
 // USED FUNCTION
 function makecountdown (nextGameDate) {
@@ -89,6 +94,8 @@ function gameCrashed (crash) {
     document.getElementById('multi').style.display = 'none';
     document.getElementById('betting-section-button').innerHTML = 'Place Bet';
     document.getElementById('betting-section-button').style.backgroundColor = '#cdd9cc';
+    document.getElementById('betting-section-button').disabled = true;
+
 }
 
 // LINKED WITH game_started
@@ -107,8 +114,10 @@ function createRound (crash) {
 
     document.getElementById('betting-section-button').innerHTML = 'Cashout';
     document.getElementById('betting-section-button').style.backgroundColor = '#ff6962';
+    document.getElementById('betting-section-button').disabled = false;
     document.getElementById('bust-text').style.display = 'none';
     document.getElementById('multi').style.display = 'block';
+    
     let tp = document.getElementById('table-players');
     for (var i = 0, row; row = tp.rows[i]; i++) {
         row.style.color = '#EDEDED';
