@@ -47,45 +47,29 @@ CREATE TABLE user(
 
 INSERT INTO user (email, password, pseudo, balance) VALUES ("victor@crashtedy.com", "123", "gouderg", 100), ("aurelien@crashtedy.com", "456", "aurelsan", 10000);
 
-
 #------------------------------------------------------------
-# -- Table: BET
+# -- Table: game
 #------------------------------------------------------------
 
-CREATE TABLE BET(
-        id_bet        Int  Auto_increment  NOT NULL ,
-        amount        Double NOT NULL ,
-        cash_out_auto Double NOT NULL ,
-        email         Varchar (50) NOT NULL
-	,CONSTRAINT BET_PK PRIMARY KEY (id_bet)
-
-	,CONSTRAINT BET_user_FK FOREIGN KEY (email) REFERENCES user(email)
+CREATE TABLE game(
+        hash_game Varchar (250) NOT NULL
+	,CONSTRAINT game_PK PRIMARY KEY (hash_game)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# -- Table: historical
+# -- Table: bet
 #------------------------------------------------------------
 
-CREATE TABLE historical(
-        id        Int  Auto_increment  NOT NULL ,
-        hash_game Varchar (250) NOT NULL ,
-        timestamp Datetime NOT NULL
-	,CONSTRAINT historical_PK PRIMARY KEY (id)
-)ENGINE=InnoDB;
+CREATE TABLE bet(
+        id_bet                  Int  Auto_increment  NOT NULL ,
+        amount_bet              Double NOT NULL ,
+        cash_out_multiplicateur Double ,
+        new_balance             Double ,
+        hash_game               Varchar (250) NOT NULL ,
+        email                   Varchar (50) NOT NULL
+	,CONSTRAINT bet_PK PRIMARY KEY (id_bet)
 
-
-#------------------------------------------------------------
-# -- Table: bet_historical
-#------------------------------------------------------------
-
-CREATE TABLE bet_historical(
-        email       Varchar (100) NOT NULL ,
-        amount      Double NOT NULL ,
-        cash_out    Double NOT NULL ,
-        new_balance Double NOT NULL ,
-        id          Int NOT NULL
-	,CONSTRAINT bet_historical_PK PRIMARY KEY (email)
-
-	,CONSTRAINT bet_historical_historical_FK FOREIGN KEY (id) REFERENCES historical(id)
+	,CONSTRAINT bet_game_FK FOREIGN KEY (hash_game) REFERENCES game(hash_game)
+	,CONSTRAINT bet_user0_FK FOREIGN KEY (email) REFERENCES user(email)
 )ENGINE=InnoDB;

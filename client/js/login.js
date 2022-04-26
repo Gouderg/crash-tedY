@@ -23,7 +23,11 @@ socket.on('token', (data) => {
 });
 
 // Réponse du serveur si le token n'est pas valide, on se connecte.
-socket.on('err-token', (data) => {
+socket.on('err-token', (err) => {
+    console.log(err);
+    Cookies.remove('token');
+    Cookies.remove('pseudo');
+    Cookies.remove('email');
 }); 
 
 

@@ -12,7 +12,7 @@ socket.on('balance', (data) => {
 
 // Sinon on affiche l'erreur dans la console.
 socket.on('err-balance', (err) => {
-    console.log(code);
+    console.log(err);
 });
 
 

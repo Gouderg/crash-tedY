@@ -2,12 +2,12 @@ let db = require('./db');
 
 // Token-check.
 let token_check = function(socket) {
-    socket.on('tocken-check', (data) => {
+    socket.on('token-check', (data) => {
         db.token_check_db(data, (res) => {
             if (res === 404) {
-                socket.emit('err-tocken', {code: 404}); 
+                socket.emit('err-token', {code: 404}); 
             } else {
-                socket.emit('tocken', {code: 200});
+                socket.emit('token', {code: 200});
             }
         });
     });
