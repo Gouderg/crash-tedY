@@ -6,6 +6,7 @@ let current_elapsed = 0;
 let tick_client = 10;
 let interval;
 let state;
+let bool_bet_placed = false;
 
 let c = new Chart("graph-chart", {
   type: "line",
@@ -96,9 +97,11 @@ function gameCrashed (crash) {
     document.getElementById('bust-text').innerHTML = 'Busted<br> @ x ' + crash;
     document.getElementById('bust-text').style.display = 'block';
     document.getElementById('multi').style.display = 'none';
+
     document.getElementById('betting-section-button').innerHTML = 'Place Bet';
     document.getElementById('betting-section-button').style.backgroundColor = '#cdd9cc';
     document.getElementById('betting-section-button').disabled = true;
+    bool_bet_placed = false;
 
 }
 
@@ -118,8 +121,14 @@ function createRound (crash) {
 
     // Show Cashout button.
     document.getElementById('betting-section-button').innerHTML = 'Cashout';
-    document.getElementById('betting-section-button').style.backgroundColor = '#ff6962';
-    document.getElementById('betting-section-button').disabled = false;
+    // Si on a pas placé de bet, on ne peut pas cashout.
+    if (bool_bet_placed) {
+        document.getElementById('betting-section-button').style.backgroundColor = '#ff6962';
+        document.getElementById('betting-section-button').disabled = false;
+    } else {
+        document.getElementById('betting-section-button').style.backgroundColor = '#7a7a7a';
+        document.getElementById('betting-section-button').disabled = true;
+    }
     
     // Disabled Auto-cashout and Bet input.
     document.getElementById('betting-section-payout-input').disabled = true;

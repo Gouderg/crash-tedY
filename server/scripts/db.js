@@ -91,6 +91,9 @@ let add_hash_game_db = function(hash, callback) {
     con.query('INSERT INTO game (hash_game) VALUES (?)', [hash], function(err, rows, fields) {
         // Trouver une façon de mieux gérer ? Fait planter le serveur si faux.
         if (err) throw err;
+        else {
+            console.log(rows);
+        }
     });
 };
 

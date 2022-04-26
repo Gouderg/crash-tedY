@@ -47,3 +47,4 @@ https://qastack.fr/programming/12871565/how-to-create-pem-files-for-https-web-se
 - [ ] Ajuster le tableau des paris de chaque joueurs.
 - [ ] Proposer un historique de chaque partie pour chaque joueur.
 - [ ] Changer le mcd de la base de données
+- [ ] Empêcher de pourvoir jouer si on arrive durant une partie en cours.
