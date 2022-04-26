@@ -5,8 +5,7 @@ let nextGameDate;
 let current_elapsed = 0;
 let tick_client = 10;
 let interval;
-
-
+let state;
 
 let c = new Chart("graph-chart", {
   type: "line",
@@ -63,10 +62,15 @@ function countdown () {
 
     document.getElementById('next-game-text').style.display = 'block';
     document.getElementById('bust-text').style.display = 'none';
+    
+    // Enabled Place bet.
     document.getElementById('betting-section-button').innerHTML = 'Place Bet';
     document.getElementById('betting-section-button').style.backgroundColor = '#86e080';
     document.getElementById('betting-section-button').disabled = false;
 
+    // Enabled input for bet.
+    document.getElementById('betting-section-payout-input').disabled = false;
+    document.getElementById('betting-section-bet-input').disabled = false;
 
 }
 // USED FUNCTION
@@ -112,9 +116,16 @@ function createRound (crash) {
     c.options.scales.yAxes[0].ticks.max = 2;
     c.update();
 
+    // Show Cashout button.
     document.getElementById('betting-section-button').innerHTML = 'Cashout';
     document.getElementById('betting-section-button').style.backgroundColor = '#ff6962';
     document.getElementById('betting-section-button').disabled = false;
+    
+    // Disabled Auto-cashout and Bet input.
+    document.getElementById('betting-section-payout-input').disabled = true;
+    document.getElementById('betting-section-bet-input').disabled = true;
+
+
     document.getElementById('bust-text').style.display = 'none';
     document.getElementById('multi').style.display = 'block';
     
@@ -133,6 +144,7 @@ function updateOnTick () {
 
     updateChart(e);
     updateCashOut(e);
+    // Insert function auto-cashout.
 }
 
 function updateCashOut (n) {
