@@ -7,6 +7,7 @@ const port = process.env.PORT || 3000;
 let Chat = require('./scripts/chat');
 let Login = require('./scripts/login');
 let Game = require('./scripts/game');
+let Bet = require('./scripts/bet');
 
 let path = __dirname.replace('\server', '');
 
@@ -25,6 +26,8 @@ io.on('connection', (socket) => {
   Login.token_check(socket);
   Login.login(socket);
   Login.register(socket);
+
+  Bet.get_balance(socket);
 
 });
 

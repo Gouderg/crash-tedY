@@ -23,7 +23,11 @@ socket.on('token', (data) => {
 });
 
 // Réponse du serveur si le token n'est pas valide, on se connecte.
-socket.on('err-token', (data) => {
+socket.on('err-token', (err) => {
+    console.log(err);
+    Cookies.remove('token');
+    Cookies.remove('pseudo');
+    Cookies.remove('email');
 }); 
 
 
@@ -43,7 +47,7 @@ socket.on('login', (data) => {
     Cookies.set('email', data.email, { expires: 7 });
     Cookies.set('token', data.token, { expires: 7 });
     Cookies.set('pseudo', data.pseudo, { expires: 7 });
-
+    
     $('#login-register').hide();
     location.reload();
 });
@@ -82,11 +86,10 @@ socket.on('register', (data) => {
 
     $('#login-register').hide();
     location.reload();
+    console.log(data.balance);
 });
 
 socket.on('err-register', (code) => {
     console.log(code);
 });
-
-
 

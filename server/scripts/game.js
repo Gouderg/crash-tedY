@@ -14,17 +14,23 @@ let restart_time = 5000;
 let tick_rate = 150;
 
 function Game (io) {
+    let db = require('./db');
 
     let state = 'ENDED'; // 'STARTING' | 'BLOCKING' | 'IN_PROGRESS' |  'ENDED'
     let start_time;
     let crash;
+    let id_game = 0;
 
     function createGame () {
         state = 'STARTING';
-        
+        // hash game and add to db.
+        id_game += 1;
+        db.add_hash_game_db(id_game + Date.now(), (e) => {console.log(e);});
+
         // TODO : Add game to db
         crash = getCrashValue();
-        console.log(state + ' (crash @' + crash + ')');
+        // crash = 1.25;
+        console.log('Game n°' + id_game + ', ' + state + ' (crash @' + crash + ')');
         
         start_time = new Date(Date.now() + restart_time);
 

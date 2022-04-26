@@ -5,6 +5,8 @@ let nextGameDate;
 let current_elapsed = 0;
 let tick_client = 10;
 let interval;
+let state;
+let bool_bet_placed = false;
 
 let c = new Chart("graph-chart", {
   type: "line",
@@ -61,8 +63,16 @@ function countdown () {
 
     document.getElementById('next-game-text').style.display = 'block';
     document.getElementById('bust-text').style.display = 'none';
+    
+    // Enabled Place bet.
     document.getElementById('betting-section-button').innerHTML = 'Place Bet';
     document.getElementById('betting-section-button').style.backgroundColor = '#86e080';
+    document.getElementById('betting-section-button').disabled = false;
+
+    // Enabled input for bet.
+    document.getElementById('betting-section-payout-input').disabled = false;
+    document.getElementById('betting-section-bet-input').disabled = false;
+
 }
 // USED FUNCTION
 function makecountdown (nextGameDate) {
@@ -87,8 +97,12 @@ function gameCrashed (crash) {
     document.getElementById('bust-text').innerHTML = 'Busted<br> @ x ' + crash;
     document.getElementById('bust-text').style.display = 'block';
     document.getElementById('multi').style.display = 'none';
+
     document.getElementById('betting-section-button').innerHTML = 'Place Bet';
     document.getElementById('betting-section-button').style.backgroundColor = '#cdd9cc';
+    document.getElementById('betting-section-button').disabled = true;
+    bool_bet_placed = false;
+
 }
 
 // LINKED WITH game_started
@@ -105,10 +119,25 @@ function createRound (crash) {
     c.options.scales.yAxes[0].ticks.max = 2;
     c.update();
 
+    // Show Cashout button.
     document.getElementById('betting-section-button').innerHTML = 'Cashout';
-    document.getElementById('betting-section-button').style.backgroundColor = '#ff6962';
+    // Si on a pas placé de bet, on ne peut pas cashout.
+    if (bool_bet_placed) {
+        document.getElementById('betting-section-button').style.backgroundColor = '#ff6962';
+        document.getElementById('betting-section-button').disabled = false;
+    } else {
+        document.getElementById('betting-section-button').style.backgroundColor = '#7a7a7a';
+        document.getElementById('betting-section-button').disabled = true;
+    }
+    
+    // Disabled Auto-cashout and Bet input.
+    document.getElementById('betting-section-payout-input').disabled = true;
+    document.getElementById('betting-section-bet-input').disabled = true;
+
+
     document.getElementById('bust-text').style.display = 'none';
     document.getElementById('multi').style.display = 'block';
+    
     let tp = document.getElementById('table-players');
     for (var i = 0, row; row = tp.rows[i]; i++) {
         row.style.color = '#EDEDED';
@@ -124,6 +153,7 @@ function updateOnTick () {
 
     updateChart(e);
     updateCashOut(e);
+    // Insert function auto-cashout.
 }
 
 function updateCashOut (n) {
@@ -192,9 +222,14 @@ function changeMenuIfLogged (logged) {
         $('#menu-notlogged').hide();
         $('#menu-logged').show();
         $('#menu-pseudo').text(Cookies.get('pseudo'));
+        $('#betting-section').show();
+        $('#betting-section-nolog').hide();
+
     } else {
         $('#menu-notlogged').show();
         $('#menu-logged').hide();
+        $('#betting-section').hide();
+        $('#betting-section-nolog').show();
     }
 }
 

@@ -18,6 +18,8 @@
 	<script src="js/index.js" defer></script>
 	<script src="js/chat.js" defer></script>
     <script src="js/game.js" defer></script>
+    <script src="js/bet.js" defer></script>
+
 
 
 	<!-- CSS -->
@@ -31,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@1,900&display=swap" rel="stylesheet">
 </head>
-<body onload="init();changeMenuIfLogged(isLogged());">
+<body onload="init();changeMenuIfLogged(isLogged());getBalance(isLogged());">
 
     <section id="login-register">
         
@@ -73,7 +75,7 @@
             <span class="menu-button" id="menu-register" action="register" onclick="showLoginRegister(this)">register</span>
         </div>
         <div class="menu-right" id="menu-logged">
-            <span id="menu-balance">Balance : <span id="balance-amount">150125</span></span>
+            <span id="menu-balance">Balance : <span id="balance-amount"></span></span>
             <span id="menu-pseudo"></span>
             <span class="menu-button" id="menu-login" action="register" onclick="disconnect(this)">Disconnect</span>
         </div>
@@ -96,16 +98,23 @@
                         <span class="graph-history-number deficit">x1.02</span>
                     </div>
                 </div>
+                <!-- Betting section when log. -->
                 <div id="betting-section">
                     <div id="betting-section-bet">
                         <span>Bet (max : 100,000)</span>
-                        <input type="text" id="betting-section-bet-input" name="bet-input" required autocomplete="off">
+                        <input type="number" min="1" id="betting-section-bet-input" name="bet-input" required autocomplete="off">
                     </div>
                     <div id="betting-section-payout">
                         <span>Auto Cash Out</span>
-                        <input type="text" id="betting-section-payout-input" name="payout-input" required autocomplete="off">
+                        <input type="number" min="0.1" step="0.1" id="betting-section-payout-input" name="payout-input" required autocomplete="off">
                     </div>
                     <button id="betting-section-button">Place bet</button>
+                </div>
+                <!-- Betting section when no log. -->
+                <div id="betting-section-nolog">
+                    <div>
+                        <span>Need to login/register to bet.</span>
+                    </div>
                 </div>
             </div>
             <div id="chatbox">

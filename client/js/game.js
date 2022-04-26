@@ -1,6 +1,6 @@
 // Nouvelle partie -> afficher le compteur
 socket.on('game_starting', (data) => {
-    console.log(data);
+    state = "LOADING";
     countdown();
 });
 
@@ -10,17 +10,19 @@ socket.on('game_started', (crash) => {
     createRound(crash);
     current_elapsed = 0;
     interval = setInterval(updateOnTick, tick_client, current_elapsed);
+    state = "STARTING";
 });
 
 // La partie continue, tick tout les tick_rate (150 ms), cf server/game.js
 socket.on('game_tick', (elapsed) => {
     current_elapsed = elapsed;
     if (!interval) interval = setInterval(updateOnTick, tick_client, current_elapsed);
+    state = "PROGRESS";
 });
 
 // La partie a crash, changer l'affichage
 socket.on('game_crash', (data) => {
-    console.log(data);
     gameCrashed(data.game_crash);
     clearInterval(interval);
+    state = "CRASH";
 });
