@@ -8,14 +8,19 @@ function growthFunction (elapsed) {
     return Math.floor(100 * Math.pow(Math.E, 0.00006 * elapsed)) / 100;
 }
 
+function getHash() {
+    return hash_game;
+}
+
 // env vars (ms)
 let aftercrash_time = 3000;
 let restart_time = 5000;
 let tick_rate = 150;
+let hash_game = 0;
 
 function Game (io) {
     let db = require('./db');
-
+    
     let state = 'ENDED'; // 'STARTING' | 'BLOCKING' | 'IN_PROGRESS' |  'ENDED'
     let start_time;
     let crash;
@@ -25,7 +30,9 @@ function Game (io) {
         state = 'STARTING';
         // hash game and add to db.
         id_game += 1;
-        db.add_hash_game_db(id_game + Date.now(), (e) => {console.log(e);});
+        hash_game = id_game + Date.now();
+        console.log(hash_game);
+        db.add_hash_game_db(hash_game, (e) => {console.log(e);});
 
         // TODO : Add game to db
         crash = getCrashValue();
@@ -99,3 +106,4 @@ function Game (io) {
 
 
 module.exports = Game;
+module.exports.getHash = getHash;

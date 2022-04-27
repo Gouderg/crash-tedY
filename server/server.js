@@ -19,16 +19,18 @@ app.get('/', (req, res) => {
   res.sendFile(path + '/client/index.html');
 });
 
+
 io.on('connection', (socket) => {
-
+  
   Chat.dispatch_message(socket, io);
-
+  
   Login.token_check(socket);
   Login.login(socket);
   Login.register(socket);
-
+  
   Bet.get_balance(socket);
-
+  Bet.add_bet(socket);
+  
 });
 
 // Serveur écoute sur le port 3000.

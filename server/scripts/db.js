@@ -91,14 +91,23 @@ let add_hash_game_db = function(hash, callback) {
     con.query('INSERT INTO game (hash_game) VALUES (?)', [hash], function(err, rows, fields) {
         // Trouver une façon de mieux gérer ? Fait planter le serveur si faux.
         if (err) throw err;
-        else {
-            console.log(rows);
-        }
     });
 };
+
+// Ajoute la valeur du bet dans la base de données.
+let add_bet_db = function(user, callback) {
+    con.query('INSERT INTO bet (amount_bet, email, hash_game) VALUES (?, ?, ?)', [user.bet, user.email, user.hash], function(err, rows, fields) {
+
+        // Throw error.
+        if (err) throw err;
+        else {console.log(rows);}
+    });
+};
+
 
 exports.token_check_db = token_check_db;
 exports.login_db = login_db;
 exports.register_db = register_db;
 exports.get_balance_db = get_balance_db;
 exports.add_hash_game_db = add_hash_game_db;
+exports.add_bet_db = add_bet_db;
