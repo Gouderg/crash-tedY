@@ -28,6 +28,8 @@ socket.on('err-token', (err) => {
     Cookies.remove('token');
     Cookies.remove('pseudo');
     Cookies.remove('email');
+    Cookies.remove('role');
+
 }); 
 
 
@@ -37,16 +39,19 @@ $('#form-login').on('submit', function(e) {
 
     if ($('#email-login').val() && $('#pass-login').val()) {
         // On envoie les données par socket.
-        socket.emit('login', {email: $('#email-login').val() ,password: $('#pass-login').val()});
+        socket.emit('login', {email: $('#email-login').val(), password: $('#pass-login').val()});
         $('#form-login').trigger("reset");
     }
 });
 
 // Réponse du serveur, on met le pseudo et le token en cookie.
 socket.on('login', (data) => {
+    console.log(data)
     Cookies.set('email', data.email, { expires: 7 });
     Cookies.set('token', data.token, { expires: 7 });
     Cookies.set('pseudo', data.pseudo, { expires: 7 });
+    Cookies.set('role', data.role, { expires: 7 });
+
     
     $('#login-register').hide();
     location.reload();
@@ -83,6 +88,8 @@ socket.on('register', (data) => {
     Cookies.set('email', data.email, { expires: 7 });
     Cookies.set('token', data.token, { expires: 7 });
     Cookies.set('pseudo', data.pseudo, { expires: 7 });
+    Cookies.set('role', data.role, { expires: 7 });
+
 
     $('#login-register').hide();
     location.reload();

@@ -43,7 +43,7 @@ let login_db = function(user, callback) {
         } else {
             // On crée le token utilisateur.
             let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-            callback({email: rows[0].email, token: token, pseudo: rows[0].pseudo})
+            callback({email: rows[0].email, token: token, pseudo: rows[0].pseudo, role: rows[0].role})
         
             // On ajoute le token à la base de donnée.
             let sql = "UPDATE user SET token = ? WHERE email = ?";
@@ -63,10 +63,10 @@ let register_db = function(user, callback){
         } else {
             // On calcule un nouveau token.
             let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-            callback({email: user.email, token: token, pseudo: user.pseudo});
+            callback({email: user.email, token: token, pseudo: user.pseudo, role: user.role});
             
             // On ajoute l'utilisateur à la base de données.
-            let sql = "INSERT INTO user (email, password, pseudo, token, balance) VALUES (?, ?, ?, ?, 1000)";
+            let sql = "INSERT INTO user (email, password, pseudo, token, balance, role) VALUES (?, ?, ?, ?, 1000, 'Player')";
             con.query(sql,[user.email, user.password, user.pseudo, token], function (err, result) {if (err) throw err;});
         }
     });   

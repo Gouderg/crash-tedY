@@ -33,6 +33,17 @@ FLUSH PRIVILEGES;
 USE crashteddy;
 
 #------------------------------------------------------------
+# -- Table: Role
+#------------------------------------------------------------
+
+CREATE TABLE Role(
+        role Varchar (50) NOT NULL
+	,CONSTRAINT Role_PK PRIMARY KEY (role)
+)ENGINE=InnoDB;
+
+INSERT INTO Role (role) VALUES ("Admin"), ("Player"), ("Moderator");
+
+#------------------------------------------------------------
 # -- Table: user
 #------------------------------------------------------------
 
@@ -41,19 +52,22 @@ CREATE TABLE user(
         pseudo   Varchar (50) NOT NULL ,
         password Varchar (150) NOT NULL ,
         token    Varchar (250) ,
-        balance  Double NOT NULL
+        balance  Double NOT NULL ,
+        role     Varchar (50) NOT NULL
 	,CONSTRAINT user_PK PRIMARY KEY (email)
+        ,CONSTRAINT user_Role_FK FOREIGN KEY (role) REFERENCES Role(role)
 )ENGINE=InnoDB;
 
-INSERT INTO user (email, password, pseudo, balance) VALUES ("victor@crashtedy.com", "123", "gouderg", 100), ("aurelien@crashtedy.com", "456", "aurelsan", 10000);
+INSERT INTO user (email, password, pseudo, balance, role) VALUES ("a@a.a", "123", "gouderg", 100, "Admin"), ("aurelien@crashtedy.com", "456", "aurelsan", 10000, "Player");
 
 #------------------------------------------------------------
 # -- Table: game
 #------------------------------------------------------------
 
 CREATE TABLE game(
-        hash_game Varchar (250) NOT NULL
-	,CONSTRAINT game_PK PRIMARY KEY (hash_game)
+        id_game   Int  Auto_increment  NOT NULL ,
+        hash_game Varchar (100) NOT NULL
+	,CONSTRAINT game_PK PRIMARY KEY (id_game)
 )ENGINE=InnoDB;
 
 
@@ -64,12 +78,11 @@ CREATE TABLE game(
 CREATE TABLE bet(
         id_bet                  Int  Auto_increment  NOT NULL ,
         amount_bet              Double NOT NULL ,
-        cash_out_multiplicateur Double ,
-        new_balance             Double ,
-        hash_game               Varchar (250) NOT NULL ,
+        cash_out_multiplicateur Double NOT NULL ,
+        id_game                 Int NOT NULL ,
         email                   Varchar (50) NOT NULL
 	,CONSTRAINT bet_PK PRIMARY KEY (id_bet)
 
-	,CONSTRAINT bet_game_FK FOREIGN KEY (hash_game) REFERENCES game(hash_game)
+	,CONSTRAINT bet_game_FK FOREIGN KEY (id_game) REFERENCES game(id_game)
 	,CONSTRAINT bet_user0_FK FOREIGN KEY (email) REFERENCES user(email)
 )ENGINE=InnoDB;
