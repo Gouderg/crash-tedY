@@ -237,5 +237,6 @@ function disconnect () {
     Cookies.remove('token');
     Cookies.remove('pseudo');
     Cookies.remove('email');
+    Cookies.remove('role');
     location.reload();
 }

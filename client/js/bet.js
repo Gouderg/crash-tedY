@@ -21,8 +21,12 @@ socket.on('err-balance', (err) => {
 
 // Quand on click sur le boutton pour parier.
 $('#betting-section-button').on('click', function(e) {
-        
-    if (state === "LOADING" && $("#betting-section-bet-input").val() && $("#betting-section-bet-input").val() < balance) {
+
+
+    let val = $("#betting-section-bet-input").val();
+
+    // val numérique, val > 0, val < balance.
+    if (state === "LOADING" && val && !isNaN(val) && val > 0  && val < balance) {
         // On désactive le bouton.
         document.getElementById('betting-section-button').disabled = true;
         document.getElementById('betting-section-button').style.backgroundColor = '#7a7a7a';
@@ -31,6 +35,7 @@ $('#betting-section-button').on('click', function(e) {
         bool_bet_placed = true;
 
         // On ajoute le bet dans la base de données.
+        socket.emit('add-bet', {bet: val, email: Cookies.get('email'), token: Cookies.get('token')});
 
         console.log($("#betting-section-bet-input").val());
     }

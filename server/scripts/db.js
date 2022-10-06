@@ -43,7 +43,7 @@ let login_db = function(user, callback) {
         } else {
             // On crée le token utilisateur.
             let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-            callback({email: rows[0].email, token: token, pseudo: rows[0].pseudo})
+            callback({email: rows[0].email, token: token, pseudo: rows[0].pseudo, role: rows[0].role})
         
             // On ajoute le token à la base de donnée.
             let sql = "UPDATE user SET token = ? WHERE email = ?";
@@ -63,10 +63,10 @@ let register_db = function(user, callback){
         } else {
             // On calcule un nouveau token.
             let token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-            callback({email: user.email, token: token, pseudo: user.pseudo});
+            callback({email: user.email, token: token, pseudo: user.pseudo, role: user.role});
             
             // On ajoute l'utilisateur à la base de données.
-            let sql = "INSERT INTO user (email, password, pseudo, token, balance) VALUES (?, ?, ?, ?, 1000)";
+            let sql = "INSERT INTO user (email, password, pseudo, token, balance, role) VALUES (?, ?, ?, ?, 1000, 'Player')";
             con.query(sql,[user.email, user.password, user.pseudo, token], function (err, result) {if (err) throw err;});
         }
     });   
@@ -91,14 +91,23 @@ let add_hash_game_db = function(hash, callback) {
     con.query('INSERT INTO game (hash_game) VALUES (?)', [hash], function(err, rows, fields) {
         // Trouver une façon de mieux gérer ? Fait planter le serveur si faux.
         if (err) throw err;
-        else {
-            console.log(rows);
-        }
     });
 };
+
+// Ajoute la valeur du bet dans la base de données.
+let add_bet_db = function(user, callback) {
+    con.query('INSERT INTO bet (amount_bet, email, hash_game) VALUES (?, ?, ?)', [user.bet, user.email, user.hash], function(err, rows, fields) {
+
+        // Throw error.
+        if (err) throw err;
+        else {console.log(rows);}
+    });
+};
+
 
 exports.token_check_db = token_check_db;
 exports.login_db = login_db;
 exports.register_db = register_db;
 exports.get_balance_db = get_balance_db;
 exports.add_hash_game_db = add_hash_game_db;
+exports.add_bet_db = add_bet_db;

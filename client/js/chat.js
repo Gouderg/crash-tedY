@@ -8,9 +8,10 @@ var input = document.getElementById('chatbox-message-input');
 
 form.addEventListener('submit', function(e) {
     let pseudo = Cookies.get('pseudo');
+    let role = Cookies.get('role');
     e.preventDefault();
     if (input.value) {
-        socket.emit('chat-msg', {pseudo: pseudo ,msg: input.value});
+        socket.emit('chat-msg', {pseudo: pseudo, msg: input.value, role: role});
         input.value = '';
     }
 });
